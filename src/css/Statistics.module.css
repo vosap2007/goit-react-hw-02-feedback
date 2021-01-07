@@ -28,6 +28,10 @@
   margin-right: 15px;
 }
 
+.button:active {
+  background-color: rgb(85, 105, 216);
+}
+
 .state {
   color: rgba(0, 0, 0, 0.781);
   font-weight: bold;

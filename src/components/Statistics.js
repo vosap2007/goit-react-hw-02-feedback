@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 //import PropTypes from 'prop-types';
-import FeedbackOptions from './FeedbackOptions'
+import FeedbackOptions from './FeedbackOptions';
+import TotalFeedback from "./Total";
+import PositiveFeedbackPercentage from "./Positive";
+import NotificationMessage from './NotificationMessage';
 import styles from '../css/Statistics.module.css';
 
 export default class Statistics extends Component {
@@ -33,23 +36,25 @@ export default class Statistics extends Component {
         
         <div>
           <span className={styles.title}>Statistics</span>
+        </div>
+        
+          
+        
+        {(this.state.good || this.state.neutral || this.state.bad) > 0 &&
+          <div>
           <p className={styles.state} >Good: {this.state.good}</p>
           <p className={styles.state}>Neutral: {this.state.neutral}</p>
-        <p className={styles.state}>Bad: {this.state.bad}</p>
+          <p className={styles.state}>Bad: {this.state.bad}</p>
+         </div>}
+
+        {(this.state.good || this.state.neutral || this.state.bad) > 0 && <TotalFeedback onTotal={this.state} /> }
+
+        {(this.state.good || this.state.neutral || this.state.bad) > 0 && <PositiveFeedbackPercentage onTotal={this.state} /> }
         
-        </div>
-      </div>);
+        {(this.state.good || this.state.neutral || this.state.bad) === 0 && <NotificationMessage /> }
+
+        
+      </div>); 
+    
   }
 }
-/*static defaultProps = {
-  title:
-    'https://dummyimage.com/640x480/2a2a2a/ffffff&text=Product+image+placeholder',
-};*/
-
-/*static propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired
-};*/
-
-//export default Statistics;
